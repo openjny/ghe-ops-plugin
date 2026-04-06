@@ -198,16 +198,23 @@ Source: https://wellarchitected.github.com/library/architecture/
 
 ## Key Recommendations
 
-### Expanding Enterprise Custom Agents Context
+### Expanding Custom Agents Context via MCP
 
-30,000 文字制限を超えるカスタムエージェントのコンテキスト拡張に MCP を活用。
+Copilot Custom Agents（旧称: Enterprise Custom Agents）は **Repository / Organization / Enterprise** の3レベルで設定可能。エージェント定義 markdown の 30,000 文字制限を超えるコンテキスト拡張に MCP を活用する。
 
-**アプローチ:**
+**Custom Agents の設定レベル:**
+- **Repository レベル:** `.github/agents/` ディレクトリ内に markdown ファイルを配置
+- **Organization レベル:** `.github-private` リポジトリの `/agents/` 内に配置
+- **Enterprise レベル:** `.github-private` リポジトリの `/agents/` 内に配置
+
+**コンテキスト拡張アプローチ:**
 1. `.github-private` リポジトリに `knowledge/` ディレクトリ構造を作成
 2. トピック別のナレッジファイルを作成
-3. エージェント markdown に GitHub MCP Server によるファイル取得命令を追加
-4. PAT + `copilot` 環境でリポジトリごとに認証設定
+3. エージェント markdown の YAML frontmatter に `mcp-servers` を定義、または GitHub MCP Server によるファイル取得命令を追加
+4. **Fine-grained PAT**（read-only、対象リポジトリ限定を推奨）+ `copilot` 環境でリポジトリごとに認証設定
 5. 動作検証
+
+> classic PAT の `repo` スコープではなく、最小権限の fine-grained PAT を使用すること。
 
 **ベストプラクティス:**
 - CODEOWNERS で明確なオーナーシップ
@@ -215,6 +222,7 @@ Source: https://wellarchitected.github.com/library/architecture/
 - メタデータの含有（更新日、バージョン）
 - PR レビュー必須
 - ファイルは 10,000 文字以下に保つ
+- Agent profile の YAML frontmatter で `tools` プロパティにより利用可能なツールを制限可能
 
 ### Implementing Polyrepo on GitHub
 

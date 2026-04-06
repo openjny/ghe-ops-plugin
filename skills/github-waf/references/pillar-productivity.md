@@ -182,7 +182,7 @@ Source: https://wellarchitected.github.com/library/productivity/
 
 **Post-launch (Weeks 5-8):**
 - 採用・アクティビティメトリクスの監視
-- Copilot Usage API / User Management API によるレポーティング
+- **Copilot usage metrics エンドポイント** / User Management API によるレポーティング（レガシー Copilot metrics API は 2026年4月に廃止済み）
 - 高度なトレーニング
 - フィードバック収集と改善
 

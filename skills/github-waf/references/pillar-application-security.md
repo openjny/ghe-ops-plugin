@@ -4,6 +4,8 @@
 
 Source: https://wellarchitected.github.com/library/application-security/
 
+> **製品変更（2025年4月〜）:** GitHub Advanced Security (GHAS) は **GitHub Secret Protection**（$19/月/committer）と **GitHub Code Security**（$30/月/committer）の2製品に分割された。本ドキュメント内の「GHAS」は、これら2製品の総称として使用する場合がある。
+
 ## Design Principles
 
 ### 1. Design for Security
@@ -178,9 +180,11 @@ Source: https://wellarchitected.github.com/library/application-security/
 **3 ステップ:**
 
 1. **GitHub アラートメタデータの理解**
-   - Code Security: 重大度、CWE、Copilot Autofix サポート
-   - Secret Protection: 有効性（Active = 高優先度）
+   - Code Security（GitHub Code Security）: 重大度、CWE、Copilot Autofix サポート
+   - Secret Protection（GitHub Secret Protection）: 有効性（Active = 高優先度）
    - Dependabot: 重大度、EPSS、直接/推移的依存関係、スコープ
+
+> **アクセス権限:** Dependabot アラートは Write/Maintain/Admin ロールが Read+Write アクセス可能。Security Manager ロールは全リポジトリへの Read アクセスとセキュリティアラートの表示・セキュリティ機能設定の管理が可能。Enterprise Security Manager (ESM) ロール（2025年10月〜 パブリックプレビュー）により Enterprise 全体のアラート・設定管理も可能。
 
 2. **組織コンテキストの補足**（カスタムプロパティとして追加）
    - インターネット公開: 公開 = 大幅に高い優先度
@@ -189,6 +193,8 @@ Source: https://wellarchitected.github.com/library/application-security/
    - アプリケーションユーザー数
 
 3. **Security Campaigns による高優先度アラートのターゲティング**
+   - Code Scanning の Security Campaigns は GA
+   - Secret Scanning の Security Campaigns はパブリックプレビュー（2025年9月〜）
    - 専用ダッシュボード、自動通知、締切/SLO、一元的追跡
 
 ### Securing GitHub Actions Workflows
@@ -198,16 +204,18 @@ Source: https://wellarchitected.github.com/library/application-security/
 2. **リポジトリルールの設定** — PR、ステータスチェック、署名付きコミット必須
 3. **最小権限** — 組織デフォルトを read-only、ジョブレベルで権限定義
 4. **Dependabot** — 脆弱依存関係の自動検出
-5. **アクション SHA ピンニング** — `actions/checkout@692973e...  # v4.1.7`
+5. **アクション SHA ピンニング** — `actions/checkout@692973e...  # v4.1.7`（Enterprise/Org ポリシーで SHA ピニングを強制可能。2025年8月〜）
 6. **可変依存関係を持つアクションの回避**
 7. **ワークフローインジェクション回避** — `run:` ブロックでのユーザー入力のサニタイズ
 8. **`pull_request_target` の回避** — 昇格権限で実行される危険性
 9. **`workflow_run` のセキュリティ** — すべてのアーティファクトを非信頼として扱う
 10. **`head.sha` を使用** — ブランチ名ではなく SHA で参照
 11. **パブリックリポジトリに self-hosted runner を使用しない**
-12. **許可アクションの制限** — Enterprise + 選択した非 Enterprise アクションのみ
+12. **許可アクションの制限** — Enterprise + 選択した非 Enterprise アクションのみ。特定アクションの明示的ブロック、SHA ピニング強制も設定可能（2025年8月〜）
 
-### Enforce GHAS at Scale
+### Enforce GitHub Code Security / Secret Protection at Scale
+
+> 旧称: Enforce GHAS at Scale。2025年4月の製品分割により名称変更。
 
 **戦略:**
 1. ブランチ戦略の確立（GitHub Flow or Git Flow）
@@ -220,7 +228,7 @@ Source: https://wellarchitected.github.com/library/application-security/
 **Secret Scanning 強制:**
 - Security Configurations で有効化
 - Push Protection の強制
-- Delegated Bypass でバイパス能力を制限
+- Delegated Bypass でバイパス能力を制限（Organization レベル + Enterprise レベルの両方で設定可能。Enterprise レベルは 2025年9月〜）
 
 **Dependency Scanning 強制:**
 - Security Configuration 内で Dependabot を有効化

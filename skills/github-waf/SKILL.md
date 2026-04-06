@@ -7,22 +7,14 @@ argument-hint: "ピラー名 or トピック (例: productivity, security, gover
 # GitHub Well-Architected Framework
 
 GitHub Enterprise の管理・運用における設計原則、チェックリスト、推奨事項を体系的に提供する。
-ソース: https://wellarchitected.github.com/library/overview/
 
-## When to Use
-
-- GitHub Enterprise の設計レビュー・アセスメント
-- 新規 GitHub Enterprise 環境の設計
-- 既存環境の改善点の特定
-- セキュリティポスチャの評価
-- ガバナンスポリシーの策定
-- CI/CD パイプラインの設計・改善
-- Copilot の大規模導入計画
-- リポジトリ管理の最適化
+> **このスキルの方針:**
+> [GitHub WAF Content Library](https://wellarchitected.github.com/library/overview/) の 5 Pillar 構造をベースに、**GitHub Docs を正（Single Source of Truth）** として独自に維持する。
+> WAF サイトの情報が古い場合は GitHub Docs に基づいて修正済み。設計原則（Design Principles）は抽象度が高く陳腐化しにくいため WAF ベースを維持し、チェックリスト・推奨事項は最新の GitHub 機能名・設定値を直接記載している。
 
 ## Framework Structure
 
-GitHub Well-Architected は 4 つのレイヤーで構成される:
+GitHub Well-Architected は 4 つのコンポーネントで構成される:
 
 1. **Pillars** — 5 つの重点領域
 2. **Design Principles** — 各ピラーの設計原則（Start → Mature → Advance の成熟度モデル）
@@ -79,13 +71,13 @@ GitHub Well-Architected は 4 つのレイヤーで構成される:
 - エグゼクティブスポンサーシップ
 - インストラクター主導 + オンデマンド学習
 - 内部コミュニティ（Expert Hub）構築
-- PRU（Premium Request Units）のバジェット管理
+- Premium Requests のバジェット管理（ENABLED/DISABLED ポリシートグル）
 - 詳細 → Productivity リファレンス / Governance リファレンス
 
 ### GitHub Actions セキュリティ
 - OIDC 認証（長寿命クレデンシャル排除）
-- アクションの SHA ピンニング
-- least privilege パーミッション（デフォルト read-only）
+- アクションの SHA ピンニング（Enterprise/Org ポリシーで強制可能）
+- least privilege パーミッション（新規リポジトリはデフォルト read-only）
 - `pull_request_target` の回避
 - self-hosted runner はパブリックリポジトリに使わない
 - 詳細 → Application Security リファレンス
@@ -107,7 +99,7 @@ GitHub Well-Architected は 4 つのレイヤーで構成される:
 - 開発者ワークスペースのセキュリティ（Dev Container, Codespaces）
 - 依存関係サプライチェーン攻撃への防御（6 層防御）
 - セキュリティアラートの優先順位付け（EPSS, カスタムプロパティ活用）
-- GHAS（GitHub Advanced Security）の大規模展開
+- GitHub Code Security / Secret Protection の大規模展開（旧 GHAS）
 - リポジトリ脅威モデル
 - NIST SSDF 準拠
 - 詳細 → Application Security リファレンス
@@ -132,41 +124,8 @@ GitHub Well-Architected は 4 つのレイヤーで構成される:
 
 ## Data Freshness
 
-> このスキルの内容は **2026年4月6日時点** の GitHub Well-Architected Content Library から取得・構造化したものです。
-> WAF は継続的に更新される living document のため、最新情報は[公式サイト](https://wellarchitected.github.com/library/overview/)を確認してください。
-
-### 各ソースページの最終更新日
-
-| Section | Last Updated |
-|---------|-------------|
-| Overview / Layers / Getting Started | 2025-12-10 |
-| ⚙️ Productivity（Design Principles, Checklist） | 2025-12-10 |
-| ⚙️ Adopting Copilot at Scale | 2025-12-10 |
-| ⚙️ Engineering System Metrics | 2025-12-10 |
-| 👥 Collaboration（Design Principles, Checklist） | 2025-12-10 |
-| 👥 Champion Program | 2025-12-10 |
-| 👥 Scaling Actions Reusability | 2025-12-10 |
-| 👥 Applying DevOps Methodology | 2025-12-10 |
-| 🔒 Application Security（Checklist） | 2025-12-10 |
-| 🔒 Application Security（Design Principles） | 2026-01-20 |
-| 🔒 Securing Developer Workspace | 2026-01-08 |
-| 🔒 Prioritizing Security Alert Remediation | 2025-12-10 |
-| 🔒 Securing GitHub Actions Workflows | 2026-02-02 |
-| 🔒 Enforce GHAS at Scale | 2025-12-10 |
-| 🔒 GitHub Repositories Threat Model | 2025-12-10 |
-| 🔒 Defending Against Dependency Supply Chain Attacks | 2026-03-24 |
-| 📜 Governance（Design Principles, Checklist） | 2025-12-10 |
-| 📜 Managing Copilot PRUs | 2025-12-10 |
-| 📜 Enterprise Policies & Best Practices | 2025-12-10 |
-| 📜 Custom Properties Best Practices | 2025-12-10 |
-| 📜 Rulesets Best Practices | 2025-12-10 |
-| 📐 Architecture（Design Principles, Checklist） | 2025-12-10 |
-| 📐 Expanding Enterprise Custom Agents Context | 2026-03-11 |
-| 📐 Implementing Polyrepo | 2026-03-06 |
-| Scenarios: Anti-patterns | 2026-03-30 |
-| Scenarios: Monorepos | 2025-12-10 |
-| Scenarios: Measuring GenAI Impact | 2025-12-10 |
-| Scenarios: NIST SSDF Implementation | 2026-01-23 |
+- **WAF 初回取得日:** 2026-04-06
+- **スキル最終更新日:** 2026-04-07
 
 ## Source
 

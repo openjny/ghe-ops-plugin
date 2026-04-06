@@ -128,16 +128,17 @@ Source: https://wellarchitected.github.com/library/governance/
 
 ## Key Recommendations
 
-### Managing GitHub Copilot Premium Request Units (PRUs)
+### Managing GitHub Copilot Premium Requests
 
-**PRU の基本:**
-- PRU = 高度な Copilot 機能の使用クレジット（Claude, Gemini, Coding Agent, Code Review）
+**Premium Requests の基本:**
+- Premium Requests = 高度な Copilot 機能の使用クレジット（Claude, Gemini 等の高度なモデル、Copilot cloud agent, Code Review）
 - 毎月 1 日 00:00:00 UTC にリセット、未使用分は繰り越しなし
-- デフォルトの Enterprise 設定は $0（オーバーレージブロック）
+- Premium Requests の有効化は **ENABLED/DISABLED のポリシートグル**で管理（旧 $0 バジェット方式は 2025年12月に廃止）
 - 基本オーバーレージ率: $0.04 USD/リクエスト
+- 利用可能なモデルリストは頻繁に更新されるため [公式プランページ](https://docs.github.com/en/copilot/get-started/plans) を参照
 
 **バジェット構成シナリオ:**
-- Scenario A: Enterprise 全体で PRU 有効化（$0 バジェット削除 or 金額設定）
+- Scenario A: Enterprise 全体で Premium Requests を有効化（ポリシーを ENABLED に設定 + 組織別バジェット上限）
 - Scenario B: 選択的ユーザー有効化（組織ごとのバジェット）
 - Scenario C: コストセンター管理（部門別バジェット割り当て）
 
@@ -155,7 +156,7 @@ Source: https://wellarchitected.github.com/library/governance/
 
 | KPI | Target | Alert Threshold |
 |-----|--------|-----------------|
-| Monthly PRU Growth | 10-20% MoM | >25% |
+| Monthly Premium Request Growth | 10-20% MoM | >25% |
 | Cost per Developer | $10-30/month | >$50/month |
 | Budget Utilization | 70-85% | >90% |
 | Feature Adoption | 60%+ DAU | <40% |
