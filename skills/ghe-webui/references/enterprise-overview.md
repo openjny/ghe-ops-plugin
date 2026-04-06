@@ -6,34 +6,36 @@
 
 Enterprise のトップページ。README の表示・編集と、外部リソースへのリンク集を提供する。
 
-## トップナビゲーション
+## ナビゲーション
 
 Enterprise のすべてのページで共通のトップナビゲーション。
 
-| 項目 | パス | 備考 |
-|------|------|------|
-| Overview | `/enterprises/{enterprise}` | |
-| Organizations | `/enterprises/{enterprise}/organizations` | |
-| People | `/enterprises/{enterprise}/people` | |
-| Identity provider | `/enterprises/{enterprise}/settings/single_sign_on_configuration` | |
-| AI Controls | `/enterprises/{enterprise}/ai-controls/agents` | |
-| Policies | `/enterprises/{enterprise}/settings/policies/repositories` | |
-| GitHub Connect | `/enterprises/{enterprise}/enterprise_installations` | |
-| Security and quality | `/enterprises/{enterprise}/security/overview` | |
-| Billing and licensing | `/enterprises/{enterprise}/billing` | |
-| Compliance | `/enterprises/{enterprise}/settings/compliance` | |
-| Insights | `/enterprises/{enterprise}/insights/copilot` | |
-| Settings | `/enterprises/{enterprise}/settings/profile` | |
+| 項目 | パス |
+|------|------|
+| Overview | `/enterprises/{enterprise}` |
+| Organizations | `/enterprises/{enterprise}/organizations` |
+| People | `/enterprises/{enterprise}/people` |
+| Identity provider | `/enterprises/{enterprise}/settings/single_sign_on_configuration` |
+| AI Controls | `/enterprises/{enterprise}/ai-controls/agents` |
+| Policies | `/enterprises/{enterprise}/settings/policies/repositories` |
+| GitHub Connect | `/enterprises/{enterprise}/enterprise_installations` |
+| Security and quality | `/enterprises/{enterprise}/security/overview` |
+| Billing and licensing | `/enterprises/{enterprise}/billing` |
+| Compliance | `/enterprises/{enterprise}/settings/compliance` |
+| Insights | `/enterprises/{enterprise}/insights/copilot` |
+| Settings | `/enterprises/{enterprise}/settings/profile` |
 
-## セクション: Enterprise README
+## Enterprise README
+
+> パス: `/enterprises/{enterprise}`
 
 Enterprise メンバー全員に向けた README を作成・表示するエリア。
 
-### UI 要素
-
 - アクションボタン: 「Create README」（未作成時）
 
-## セクション: Explore more
+## Explore more
+
+> パス: `/enterprises/{enterprise}`
 
 外部リソースへのリンクカード。
 
