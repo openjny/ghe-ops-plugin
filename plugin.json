@@ -1,0 +1,5 @@
+{
+    "name": "ghe-ops-plugin",
+    "description": "GitHub Enterprise の管理・運用に関する知識とスキルを提供するプラグイン",
+    "version": "0.1.0"
+}
