@@ -18,9 +18,16 @@ user-invocable: true
 ### 1. 網羅性
 
 - 実際の UI に存在するすべてのトップナビ項目に対応する reference ファイルが存在する
+- Settings ページだけでなく、設定に相当する操作ができるすべてのトップナビ項目（Security and quality、Insights 等）も対象とする
 - 各 reference ファイル内で、サイドナビ・タブのすべてのサブページが記録されている
-- 各サブページ内の設定項目・機能がすべてリスト化されている
+- 各サブページ内の設定項目・機能がすべてリスト化されている（パスだけの記録は不十分。「何ができるか」まで記録する）
 - UI から消えた項目が残っていない
+
+### 2. 逆引き可能性
+
+- 「○○の設定はどこにあるか？」という問いに reference から回答できること
+- すべてのサブページについて「パス + そこで何ができるか」がセットで記録されていること
+- ナビゲーションテーブルにパスだけ記載してセクションの中身が空、という状態は品質基準を満たさない
 
 ### 2. 正確性
 
@@ -45,7 +52,7 @@ user-invocable: true
 
 - ファイル命名規則: `enterprise-{nav-item}.md`, `org-{nav-item}.md`, `repo-{nav-item}.md`
 - 各ファイルは「概要 → ナビゲーション → セクション別の設定リスト → 脚注」の構造を持つ
-- `ghe-webui` の SKILL.md の URL パターンテーブルと references リンクが最新
+- `ghe-webui` の SKILL.md では URL パターンテーブルと references リンクを統合する（同じテーブル内に reference ファイルへのリンクを含める）
 
 ## 終了条件
 
@@ -63,10 +70,10 @@ user-invocable: true
 ## 巡回の方針
 
 1. **起点**: Enterprise / Org / Repo のトップページを開く
-2. **発見**: トップナビの全項目を読み取り、既存 references との差分を確認する
-3. **深掘り**: 各トップナビ項目に遷移し、サイドナビ・タブを発見。さらに各サブページに遷移して設定項目を収集する
+2. **発見**: トップナビの全項目を読み取る。Settings 以外にも設定に相当するページ（Security and quality、Insights 等）があるため、すべてのトップナビ項目を対象とする
+3. **深掘り**: 各トップナビ項目に遷移し、サイドナビ・タブを発見。さらに各サブページに遷移して「何ができるか」を収集する。パスの記録だけで終わらせない
 4. **補強**: 新規・不明な設定項目は GitHub Docs で概念を確認し、脚注を付与する
-5. **反映**: reference ファイルと SKILL.md を更新する
+5. **反映**: reference ファイルと SKILL.md を更新する。SKILL.md の URL テーブルには reference ファイルへのリンクを含める
 
 ## reference ファイルテンプレート
 
@@ -95,6 +102,95 @@ user-invocable: true
 ---
 
 [^1]: [GitHub Docs: {topic}](https://docs.github.com/...)
+```
+
+## 良い例・悪い例
+
+### 悪い例: パスだけで中身がない
+
+```markdown
+### Code and automation
+
+| 項目 | パス |
+|------|------|
+| Branches | `/{owner}/{repo}/settings/branches` |
+| Webhooks | `/{owner}/{repo}/settings/hooks` |
+| Environments | `/{owner}/{repo}/settings/environments` |
+```
+
+→ 「Branches で何ができるか」がわからない。逆引きできない。
+
+### 良い例: 何ができるかまで書いてある
+
+```markdown
+### Code and automation
+
+#### Branches
+
+> パス: `/{owner}/{repo}/settings/branches`
+
+- デフォルトブランチの変更
+- ブランチ保護ルールの作成・編集（レビュー必須、ステータスチェック、force push 禁止等）[^2]
+
+#### Webhooks
+
+> パス: `/{owner}/{repo}/settings/hooks`
+
+- Webhook の追加・編集・削除
+- イベントの選択（push, PR, issues 等）と配信先 URL の設定
+- 最近の配信履歴の確認・再送
+
+#### Environments
+
+> パス: `/{owner}/{repo}/settings/environments`
+
+- デプロイ環境の作成・管理
+- 環境保護ルール（レビュアー指定、待機時間）の設定
+- 環境固有の Secrets と Variables の管理[^3]
+```
+
+→ 「ブランチ保護ルールはどこで設定する？」→ 「Branches」と逆引きできる。
+
+### 悪い例: UI 実装詳細が細かすぎる
+
+```markdown
+#### General
+
+| 項目 | 説明 | 入力タイプ |
+|------|------|-----------|
+| Enterprise display name | 表示名（必須） | テキスト |
+| Description | 説明（任意） | テキスト |
+| Website URL | Web サイト URL（任意） | テキスト |
+| Location | 所在地（任意） | テキスト |
+```
+
+→ 入力タイプやテーブルの列構造は不要。
+
+### 良い例: 適切な粒度
+
+```markdown
+#### General
+
+- Enterprise の表示名、説明、Web サイト URL、所在地、セキュリティ連絡先メールを設定できる
+- プロフィール画像をアップロードできる
+- Profile name visibility: メンバーのプロフィール名をハンドルと一緒に表示するか（Let organizations decide / Enabled / Disabled）
+```
+
+→ 何が設定できるかが分かる。ポリシー選択肢は記録する。入力タイプは省略。
+
+## SKILL.md テンプレート
+
+`ghe-webui/SKILL.md` の URL パターンテーブルは reference ファイルへのリンクを統合する。
+
+```markdown
+### {レベル名} レベル
+
+ベースパス: `/{base-path}`
+
+| ページ | パス | 備考 | Reference |
+|--------|------|------|-----------|
+| {ページ名} | `/{path}` | {備考} | [詳細](./references/{file}.md) |
+| ... | ... | ... | ... |
 ```
 
 ---
