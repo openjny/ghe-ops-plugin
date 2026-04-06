@@ -4,18 +4,18 @@ GitHub Enterprise の管理・運用に関する知識とスキルを提供す�
 
 ## Install
 
-```
-Chat: Install Plugin From Source
-```
-
-で `https://github.com/openjny/github-enterprise-ops-plugin` を入力。
-
-または `settings.json` に直接追加:
+### VS Code
 
 ```json
 "chat.pluginLocations": {
     "openjny/github-enterprise-ops-plugin": true
 }
+```
+
+### GitHub Copilot CLI
+
+```bash
+copilot plugin install openjny/github-enterprise-ops-plugin
 ```
 
 ## Structure
