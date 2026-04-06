@@ -130,6 +130,44 @@ GitHub Well-Architected は 4 つのレイヤーで構成される:
 3. **Analysis and Scoring** — ピラー・原則に対するスコアリング
 4. **Recommendations** — 改善提案レポート
 
+## Data Freshness
+
+> このスキルの内容は **2026年4月6日時点** の GitHub Well-Architected Content Library から取得・構造化したものです。
+> WAF は継続的に更新される living document のため、最新情報は[公式サイト](https://wellarchitected.github.com/library/overview/)を確認してください。
+
+### 各ソースページの最終更新日
+
+| Section | Last Updated |
+|---------|-------------|
+| Overview / Layers / Getting Started | 2025-12-10 |
+| ⚙️ Productivity（Design Principles, Checklist） | 2025-12-10 |
+| ⚙️ Adopting Copilot at Scale | 2025-12-10 |
+| ⚙️ Engineering System Metrics | 2025-12-10 |
+| 👥 Collaboration（Design Principles, Checklist） | 2025-12-10 |
+| 👥 Champion Program | 2025-12-10 |
+| 👥 Scaling Actions Reusability | 2025-12-10 |
+| 👥 Applying DevOps Methodology | 2025-12-10 |
+| 🔒 Application Security（Checklist） | 2025-12-10 |
+| 🔒 Application Security（Design Principles） | 2026-01-20 |
+| 🔒 Securing Developer Workspace | 2026-01-08 |
+| 🔒 Prioritizing Security Alert Remediation | 2025-12-10 |
+| 🔒 Securing GitHub Actions Workflows | 2026-02-02 |
+| 🔒 Enforce GHAS at Scale | 2025-12-10 |
+| 🔒 GitHub Repositories Threat Model | 2025-12-10 |
+| 🔒 Defending Against Dependency Supply Chain Attacks | 2026-03-24 |
+| 📜 Governance（Design Principles, Checklist） | 2025-12-10 |
+| 📜 Managing Copilot PRUs | 2025-12-10 |
+| 📜 Enterprise Policies & Best Practices | 2025-12-10 |
+| 📜 Custom Properties Best Practices | 2025-12-10 |
+| 📜 Rulesets Best Practices | 2025-12-10 |
+| 📐 Architecture（Design Principles, Checklist） | 2025-12-10 |
+| 📐 Expanding Enterprise Custom Agents Context | 2026-03-11 |
+| 📐 Implementing Polyrepo | 2026-03-06 |
+| Scenarios: Anti-patterns | 2026-03-30 |
+| Scenarios: Monorepos | 2025-12-10 |
+| Scenarios: Measuring GenAI Impact | 2025-12-10 |
+| Scenarios: NIST SSDF Implementation | 2026-01-23 |
+
 ## Source
 
 - [GitHub Well-Architected Content Library](https://wellarchitected.github.com/library/overview/)
