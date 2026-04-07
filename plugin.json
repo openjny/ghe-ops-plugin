@@ -1,12 +1,12 @@
 {
-    "name": "ghe-ops-plugin",
+    "name": "ghe-ops-skills",
     "description": "GitHub Enterprise の管理・運用に関する知識とスキルを提供するプラグイン",
     "version": "0.1.0",
     "author": {
         "name": "Junya Yamaguchi",
         "email": "openjny@gmail.com"
     },
-    "repository": "https://github.com/openjny/ghe-ops-plugin",
+    "repository": "https://github.com/openjny/ghe-ops-skills",
     "license": "MIT",
     "keywords": [
         "GitHub Enterprise",
