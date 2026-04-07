@@ -1,3 +1,6 @@
 {
     "chat.plugins.enabled": true,
+    "chat.agentSkillsLocations": {
+        "./skills": true
+    },
 }
